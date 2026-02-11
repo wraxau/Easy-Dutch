@@ -193,7 +193,7 @@ class ViewController: UIViewController {
             titleLabel.text = "Cute cat"
         case 9:
             titleLabel.backgroundColor = .darkGray
-            titleLabel.text = "Selebrity cat"
+            titleLabel.text = "Celebrity cat"
         default:
             titleLabel.backgroundColor = .gray
             titleLabel.text = "Typical cat"

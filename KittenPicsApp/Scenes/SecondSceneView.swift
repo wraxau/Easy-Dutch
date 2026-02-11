@@ -14,13 +14,13 @@ struct SecondSceneView: View {
     private var currentTitle: String {
         switch currentIndex{
         case 0:
-            return "The Golden retriver"
+            return "The Golden retriever"
         case 1:
             return "The Bernese Mountain Dog"
         case 2:
             return "The Dwarf dachshund"
         case 3:
-            return "The Domlatinets"
+            return "The Dalmatian"
         case 4:
             return "The Dwarf dachshund"
         case 5:
