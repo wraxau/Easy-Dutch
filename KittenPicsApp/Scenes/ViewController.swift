@@ -1,4 +1,5 @@
 import UIKit
+import SwiftUI
 
 class ViewController: UIViewController {
 
@@ -20,8 +21,10 @@ class ViewController: UIViewController {
         label.text = "Tap one of the buttons to see a cat!"
         label.textColor = .white
         label.numberOfLines = 0
-        label.backgroundColor = .orange
+        label.backgroundColor = .black
         label.font = .systemFont(ofSize: 20)
+        label.layer.cornerRadius = 10.0
+        label.clipsToBounds = true
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false // чтобы констрейнты работали для лейбла
         return label
@@ -32,7 +35,7 @@ class ViewController: UIViewController {
         let leftButton = UIButton()
         leftButton.setTitle("Left", for: .normal)
         leftButton.setTitleColor(.white, for: .normal)
-        leftButton.backgroundColor = .orange
+        leftButton.backgroundColor = .black
         leftButton.layer.cornerRadius = 12  // закругление
         leftButton.clipsToBounds = true
         leftButton.addAction(
@@ -48,7 +51,7 @@ class ViewController: UIViewController {
         let rightButton = UIButton()
         rightButton.setTitle("Right", for: .normal)
         rightButton.setTitleColor(.white, for: .normal)
-        rightButton.backgroundColor = .orange
+        rightButton.backgroundColor = .black
         rightButton.layer.cornerRadius = 12  // закругление
         rightButton.clipsToBounds = true
         rightButton.addAction(
@@ -67,6 +70,23 @@ class ViewController: UIViewController {
         imageView.image = UIImage(named: images[0])
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
+    }()
+    
+    private lazy var nextPageButton: UIButton = {
+        let nextPageButton = UIButton()
+        nextPageButton.setTitle("Go to dog's page", for: .normal)
+        nextPageButton.setTitleColor(.white, for: .normal)
+        nextPageButton.backgroundColor = .systemGray2
+        nextPageButton.layer.cornerRadius = 12  // закругление
+        nextPageButton.clipsToBounds = true
+        nextPageButton.addAction(
+            UIAction{[weak self] _ in
+                self?.goNextPage()
+            },
+            for:  .touchUpInside)
+        
+        nextPageButton.translatesAutoresizingMaskIntoConstraints = false
+        return nextPageButton
     }()
     
     
@@ -89,7 +109,7 @@ class ViewController: UIViewController {
     
     // используем Constarints а не Frame, так как Constraints адаптивные. Хотя Frame намного быстрее
     private func configureView() {
-        view.backgroundColor = .brown
+        view.backgroundColor = .systemIndigo
         view.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
@@ -130,42 +150,52 @@ class ViewController: UIViewController {
             
         ])
         
+        view.addSubview(nextPageButton)
+        
+        NSLayoutConstraint.activate([
+            
+            nextPageButton.topAnchor.constraint(equalTo: rightButton.bottomAnchor, constant: 20),
+            nextPageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nextPageButton.widthAnchor.constraint(equalToConstant: 160),
+            nextPageButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
     }
     
     private func updateLabel(x: Int) {
         switch x {
         case 0:
-            titleLabel.backgroundColor = .red
+            titleLabel.backgroundColor = .gray
             titleLabel.text = "Business cat"
         case 1:
-            titleLabel.backgroundColor = .blue
+            titleLabel.backgroundColor = .darkGray
             titleLabel.text = "Gloating cat"
         case 2:
             titleLabel.backgroundColor = .gray
             titleLabel.text = "Pomantic cat"
         case 3:
-            titleLabel.backgroundColor = .systemMint
+            titleLabel.backgroundColor = .darkGray
             titleLabel.text = "Chill kitten"
         case 4:
-            titleLabel.backgroundColor = .systemIndigo
+            titleLabel.backgroundColor = .gray
             titleLabel.text = "Mac enjoyer kitten"
         case 5:
-            titleLabel.backgroundColor = .magenta
+            titleLabel.backgroundColor = .darkGray
             titleLabel.text = "Screaming kitten"
         case 6:
-            titleLabel.backgroundColor = .darkGray
+            titleLabel.backgroundColor = .gray
             titleLabel.text = "Official cat"
         case 7:
-            titleLabel.backgroundColor = .systemPink
+            titleLabel.backgroundColor = .darkGray
             titleLabel.text = "Cat in the trouble"
         case 8:
-            titleLabel.backgroundColor = .purple
+            titleLabel.backgroundColor = .gray
             titleLabel.text = "Cute cat"
         case 9:
-            titleLabel.backgroundColor = .green
+            titleLabel.backgroundColor = .darkGray
             titleLabel.text = "Selebrity cat"
         default:
-            titleLabel.backgroundColor = .cyan
+            titleLabel.backgroundColor = .gray
             titleLabel.text = "Typical cat"
         }
     }
@@ -190,6 +220,17 @@ class ViewController: UIViewController {
 
     private func updateImage() {
         imageView.image = UIImage(named: images[currentIndex])
+    }
+    
+    private func goNextPage() {
+        let swiftUIView = SecondSceneView {
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        let hostingController = UIHostingController(rootView: swiftUIView)
+        hostingController.title = "Dog Picker"
+                
+        navigationController?.pushViewController(hostingController, animated: true)
     }
 
 }
