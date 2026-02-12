@@ -30,12 +30,15 @@
 
 ## Скриншоты
 
+### Launch screen
+![Screenshots](Screenshots/launchScreen.png)
+
 ### Главный экран (котики) - UIKit
 ![Screenshots](Screenshots/1cat.png)
 ![Screenshots](Screenshots/2cat.png)
 
 ### Dog Picker (собачки) - SwiftUI
-![Screenshots](Screenshots/1dog.png)
-![Screenshots](Screenshots/2dog.png)
+![Screenshots](Screenshots/11dog.png)
+![Screenshots](Screenshots/22dog.png)
 
 
