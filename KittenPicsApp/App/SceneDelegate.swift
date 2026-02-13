@@ -8,8 +8,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let viewController = ViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let mainNavigationVC = MainNavigationViewController()
+        let navigationController = UINavigationController(rootViewController: mainNavigationVC) // переписала что главный контроллер теперь другой
         
         window = UIWindow(windowScene: windowScene)
         window?.rootViewController = navigationController

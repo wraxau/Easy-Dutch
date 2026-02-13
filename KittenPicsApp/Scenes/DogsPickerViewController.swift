@@ -1,6 +1,8 @@
 import SwiftUI
 
-struct SecondSceneView: View {
+struct DogsPickerViewController: View {
+    
+    // MARK: Constants
     
     // Замыкание для возврата в первый экран
     var onClose: () -> Void
@@ -8,6 +10,8 @@ struct SecondSceneView: View {
     @State private var currentIndex = 0
     
     private let dogsImages = ["dog1", "dog2", "dog3", "dog4", "dog5", "dog6","dog7","dog8","dog9","dog10"]
+    
+    // MARK: Properties
     
     // вычисляемое свойство: в зависимости от того, какой currentIndex - будет меняться надпись на экране
     
@@ -100,21 +104,13 @@ struct SecondSceneView: View {
                     }
                 }
                 
-                Button("Go to cat's page") {
-                    onClose()
-                }
-                .padding(.horizontal,20)
-                .padding(.vertical, 14)
-                .background(Color.black)
-                .foregroundColor(.white)
-                .cornerRadius(20)
             }
         }
     }
 }
 
 #Preview {
-    SecondSceneView(onClose: {
+    DogsPickerViewController(onClose: {
     })
     .preferredColorScheme(.dark)
 }

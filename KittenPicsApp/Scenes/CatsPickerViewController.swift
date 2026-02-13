@@ -1,10 +1,10 @@
 import UIKit
 import SwiftUI
 
-class ViewController: UIViewController {
+class CatsPickerViewController: UIViewController {
 
     
-// Constants
+// MARK: Constants
     // сюда будем помещать размеры элементов на экране, чтобы они все были в одном месте
     private enum Constants {
         enum TitleLabel {
@@ -13,18 +13,19 @@ class ViewController: UIViewController {
            
     }
     
-// Subview - разные view которые будут лежать на нашей основнйо view - то есть элементы экрана
+// MARK: Subview
+//- разные view которые будут лежать на нашей основнйо view - то есть элементы экрана
     
     // это реализация лямба функции котоорая сразу возаращет лейбл, который мне нужен
     private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Tap one of the buttons to see a cat!"
         label.textColor = .white
-        label.numberOfLines = 0
+        label.numberOfLines = 0 // текст занимает столько строк, сколько ему нужно, чтобы норм помещаться
         label.backgroundColor = .black
         label.font = .systemFont(ofSize: 20)
         label.layer.cornerRadius = 10.0
-        label.clipsToBounds = true
+        label.clipsToBounds = true //  чтобы скругление краев background у label работало
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false // чтобы констрейнты работали для лейбла
         return label
@@ -72,31 +73,15 @@ class ViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var nextPageButton: UIButton = {
-        let nextPageButton = UIButton()
-        nextPageButton.setTitle("Go to dog's page", for: .normal)
-        nextPageButton.setTitleColor(.white, for: .normal)
-        nextPageButton.backgroundColor = .systemGray2
-        nextPageButton.layer.cornerRadius = 12  // закругление
-        nextPageButton.clipsToBounds = true
-        nextPageButton.addAction(
-            UIAction{[weak self] _ in
-                self?.goNextPage()
-            },
-            for:  .touchUpInside)
-        
-        nextPageButton.translatesAutoresizingMaskIntoConstraints = false
-        return nextPageButton
-    }()
     
-    
-// Properties
+// MARK: Properties
     
     let images: [String] = ["cat1","cat2","cat3","cat4","cat5","cat6","cat7","cat8","cat9","cat10",]
     private var currentIndex = 0
 
 
-// Lifecycle - жизенный цикл ViewController - что когда подругжается, происходит и тд. Мы можем вызывать разные методы в разное время
+// MARK: - Lifecycle
+// - жизенный цикл ViewController - что когда подругжается, происходит и тд. Мы можем вызывать разные методы в разное время
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +90,7 @@ class ViewController: UIViewController {
     
     deinit { }
 
-//  Методы
+//  MARK: Methods
     
     // используем Constarints а не Frame, так как Constraints адаптивные. Хотя Frame намного быстрее
     private func configureView() {
@@ -150,15 +135,6 @@ class ViewController: UIViewController {
             
         ])
         
-        view.addSubview(nextPageButton)
-        
-        NSLayoutConstraint.activate([
-            
-            nextPageButton.topAnchor.constraint(equalTo: rightButton.bottomAnchor, constant: 20),
-            nextPageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nextPageButton.widthAnchor.constraint(equalToConstant: 160),
-            nextPageButton.heightAnchor.constraint(equalToConstant: 40)
-        ])
         
     }
     
@@ -222,16 +198,6 @@ class ViewController: UIViewController {
         imageView.image = UIImage(named: images[currentIndex])
     }
     
-    private func goNextPage() {
-        let swiftUIView = SecondSceneView {
-            self.navigationController?.popViewController(animated: true)
-        }
-        
-        let hostingController = UIHostingController(rootView: swiftUIView)
-        hostingController.title = "Dog Picker"
-                
-        navigationController?.pushViewController(hostingController, animated: true)
-    }
 
 }
 
