@@ -1,6 +1,6 @@
 import UIKit
 
-class UIKitTableViewController: UIViewController {
+class FoodTableViewController: UIViewController {
     
     // MARK: Constants
     
@@ -12,7 +12,7 @@ class UIKitTableViewController: UIViewController {
         "Croissant 🥐", "Avocado Toast 🥑", "Pancakes 🥞", "Samosa 🥟"
     ]
     
-    /// Заголовок с текущим выбором
+    // Заголовок с текущим выбором
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Choose a dish"
@@ -84,7 +84,7 @@ class UIKitTableViewController: UIViewController {
 }
 
 // MARK: - UITableViewDataSource (источник данных для таблицы)
-extension UIKitTableViewController: UITableViewDataSource {
+extension FoodTableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         dishes.count // колво строк в таблице
@@ -108,7 +108,7 @@ extension UIKitTableViewController: UITableViewDataSource {
     }
 }
 
-extension UIKitTableViewController: UITableViewDelegate {
+extension FoodTableViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

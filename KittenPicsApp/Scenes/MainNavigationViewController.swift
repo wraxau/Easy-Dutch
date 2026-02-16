@@ -142,18 +142,18 @@ class MainNavigationViewController: UIViewController {
     }
 
     private func openUIKitPage() {
-        let tableVC = UIKitTableViewController()
-        tableVC.title = "Таблица UIKit"
+        let tableVC = FoodTableViewController()
+        tableVC.title = "Food"
         navigationController?.pushViewController(tableVC, animated: true)
     }
     
     private func openSwiftUIPage() {
-        let swiftUIView = SwiftUITableViewController {
+        let swiftUIView =  DrinkViewList {
             self.navigationController?.popViewController(animated: true)
         }
         
         let hostingController = UIHostingController(rootView: swiftUIView)
-        hostingController.title = "Таблица SwiftUI"
+        hostingController.title = "Drinks"
         
         navigationController?.pushViewController(hostingController, animated: true)
     }

@@ -1,44 +1,66 @@
-# Pet Explorer
+# 🐾 Pet Explorer  
+*Гибридное iOS-приложение с навигацией между 4 экранами: UIKit + SwiftUI*
 
-Домашняя работа №1. Гибридное iOS-приложение для просмотра изображений животных: котиков на первом экране (UIKit) и собачек на втором (SwiftUI).
+![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)  
+![Platforms](https://img.shields.io/badge/Platforms-iOS_15%2B-blue.svg)  
+![Architecture](https://img.shields.io/badge/Architecture-Hybrid_UKit--SwiftUI-lightgrey.svg)
 
-### Основной экран (UIKit)
-- Переключение изображений котиков кнопками ← / →
-- Плавная анимация смены изображений
-- Полностью программный интерфейс 
+---
 
-### Второй экран — Dog Picker (SwiftUI)
--  Просмотр 10 пород собак 
--  Зацикленная навигация (бесконечный скролл ← →)
--  Адаптивный интерфейс с градиентным фоном
+## Структура приложения
 
-## Архитектура
+Приложение построено на **`UINavigationController`** как корневом контроллере. Главный экран — меню навигации с 4 кнопками для перехода на целевые экраны.
 
-| Экран | Технология | Подход |
-|-------|------------|--------|
-| **Главный экран** | UIKit | Чистый код, Auto Layout через Constraints |
-| **Dog Picker** | SwiftUI | Декларативный интерфейс с `@State` |
-| **Интеграция** | `UIHostingController` | Мост между мирами UIKit ↔ SwiftUI |
+| Экран         | Технология | Контент                     | Особенности                                      |
+|---------------|------------|-----------------------------|--------------------------------------------------|
+| **Главное меню** | UIKit      | Кнопки навигации            | Программный интерфейс, Auto Layout, адаптивная сетка |
+| **Котики**      | UIKit      | Изображения из `cats/`      | Анимированный переход ←/→, плавное затухание    |
+| **Собачки**     | SwiftUI    | 10 пород из `dogs/`         | Зацикленный горизонтальный скролл, градиентный фон |
+| **Еда**         | SwiftUI    | Список блюд                 | `List` с изображениями, названиями, описанием    |
+| **Напитки**     | SwiftUI    | Список напитков             | Аналогично экрану «Еда», отдельный контент       |
 
-## Технологии
+---
 
-- **UIKit** — основной экран с динамическими изображениями
-- **SwiftUI** — второй экран с реактивной навигацией
-- **Гибридная архитектура** — плавная интеграция через `UIHostingController`
-- **Auto Layout** — адаптивный интерфейс без Storyboard
-- **Assets Catalog** — организованные изображения в группах (`cats/`, `dogs/`)
+## Гибридная интеграция
+
+- Все SwiftUI-экраны (`DogPickerViewController`, `DrinkListView`) обёрнуты в `UIHostingController`
+- UIKit-экраны (`CatsPickerViewController`, `MainNavigationViewController`) управляются напрямую через `UINavigationController`
+---
+
+## Дизайн и анимации
+
+- **UIKit-экраны**: программные констрейнты, плавные анимации через `UIView.animate`
+- **SwiftUI-экраны**:
+  - Собачки: `.scrollIndicators(.hidden)`, кастомный `GeometryReader` для зацикливания
+  - Таблицы: разделители, аккуратные ячейки с `HStack`, адаптивные отступы
+- Единый стиль кнопок (ButtonStyle.swift) применен для MainNavigationViewContoller для избежания дублировнаия кода
+
+---
 
 ## Скриншоты
 
-### Launch screen
-![Screenshots](Screenshots/launchScreen.png)
+| Экран             | Изображение                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| **Launch Screen** | ![Screenshots](Screenshots/launchScreen.png)                                     |
+| **Главное меню**  | ![Screenshots](Screenshots/mainMenu.png)                                           |
+| **Котики (1)**    | ![Screenshots](Screenshots/cat1.png)                                              |
+| **Котики (2)**    | ![Screenshots](Screenshots/cat2.png)                                              |
+| **Собачки (1)**   | ![Screenshots](Screenshots/dog.png)                                               |
+| **Еда (1)**       | ![Screenshots](Screenshots/food1.png)                                              |
+| **Eда (2)**       | ![Screenshots](Screenshots/food2.png)                                            |
+| **Напитки (1)**   | ![Screenshots](Screenshots/drink2.png)                                           |
+| **Напитки (2)**   | ![Screenshots](Screenshots/drink2.png)                                           |
+---
 
-### Главный экран (котики) - UIKit
-![Screenshots](Screenshots/1cat.png)
-![Screenshots](Screenshots/2cat.png)
+## Технологический стек
 
-### Dog Picker (собачки) - SwiftUI
-![Screenshots](Screenshots/11dog.png)
-![Screenshots](Screenshots/22dog.png)
+- **UIKit**: навигация, экран котиков, еды, главное меню
+- **SwiftUI**: экраны собак, напитков
+- **Мост**: `UIHostingController` для интеграции SwiftUI в стек UIKit
+- **Layout**: 100% программные констрейнты (без Storyboard/XIB)
+- **Assets**: структурированный каталог ресурсов
+- **Поддержка**: iOS 16+, адаптация под все размеры экранов
+
+---
 
 

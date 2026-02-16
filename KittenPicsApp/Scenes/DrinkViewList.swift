@@ -1,5 +1,5 @@
 import SwiftUI
-struct SwiftUITableViewController: View {
+struct  DrinkViewList: View {
     
     var onClose: () -> Void //Замыкание для возврата на главный экран
     
@@ -81,6 +81,6 @@ struct SwiftUITableViewController: View {
 
 
 #Preview {
-    SwiftUITableViewController(onClose: {})
+    DrinkViewList(onClose: {})
 }
 
