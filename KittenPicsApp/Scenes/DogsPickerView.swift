@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct DogsPickerViewController: View {
+struct DogsPickerView: View {
     
     // MARK: Constants
     
@@ -110,7 +110,7 @@ struct DogsPickerViewController: View {
 }
 
 #Preview {
-    DogsPickerViewController(onClose: {
+    DogsPickerView(onClose: {
     })
     .preferredColorScheme(.dark)
 }

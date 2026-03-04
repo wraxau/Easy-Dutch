@@ -73,6 +73,18 @@ class MainNavigationViewController: UIViewController {
         return button
     }()
     
+    private lazy var uiCollectionButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Netherlands", for: .normal)
+        button.applyStyle()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addAction(
+            UIAction{ [weak self] _ in
+                self?.openUICollectionPage()
+            }, for: .touchUpInside)
+        return button
+    }()
+    
     
     // MARK: Properties
     
@@ -91,7 +103,7 @@ class MainNavigationViewController: UIViewController {
     private func configureView() {
         view.backgroundColor = .systemIndigo
         
-        [titleLabel, catButton, dogButton, uikitTableButton, swiftuiTableButton].forEach {
+        [titleLabel, catButton, dogButton, uikitTableButton, swiftuiTableButton, uiCollectionButton].forEach {
             view.addSubview($0) // добавила сразу все элементы
         }
         
@@ -121,6 +133,11 @@ class MainNavigationViewController: UIViewController {
             swiftuiTableButton.widthAnchor.constraint(equalToConstant: 300),
             swiftuiTableButton.heightAnchor.constraint(equalToConstant: 60),
             
+            uiCollectionButton.topAnchor.constraint(equalTo: swiftuiTableButton.bottomAnchor, constant: 30),
+            uiCollectionButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            uiCollectionButton.widthAnchor.constraint(equalToConstant: 300),
+            uiCollectionButton.heightAnchor.constraint(equalToConstant: 60),
+            
         ])
         
     }
@@ -131,7 +148,7 @@ class MainNavigationViewController: UIViewController {
         navigationController?.pushViewController(catVC, animated: true)
     }
     private func openDogPage() {
-        let dogView = DogsPickerViewController() {  // замыкание для возврата
+        let dogView = DogsPickerView() {  // замыкание для возврата
             self.navigationController?.popViewController(animated: true)
         }
         
@@ -156,6 +173,12 @@ class MainNavigationViewController: UIViewController {
         hostingController.title = "Drinks"
         
         navigationController?.pushViewController(hostingController, animated: true)
+    }
+    
+    private func openUICollectionPage() {
+        let tableVC = UICollectionViewController()
+        tableVC.title = "Netherlands"
+        navigationController?.pushViewController(tableVC, animated: true)
     }
     
 }
