@@ -11,40 +11,37 @@ class MainNavigationViewController: UIViewController {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Main control screen"
-        label.textColor = .white
+        label.text = "Menu"
+        label.textColor = .darkBlue
         label.font = .boldSystemFont(ofSize: 30)
         label.numberOfLines = 0
-        label.layer.shadowColor = UIColor.black.cgColor
-        label.layer.shadowRadius = 8
-        label.layer.shadowOpacity = 0.6
         label.layer.masksToBounds = false
         label.textAlignment = .center // центрирую текст в области, которую задам по label
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    private lazy var catButton: UIButton = {
+    private lazy var cityButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Cats", for: .normal)
+        button.setTitle("Places in the City", for: .normal)
         button.applyStyle()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction( // обработчик нажатия на кнопку
             UIAction{ [weak self] _ in
-                self?.openCatPage()
+                self?.openCityage()
             }, for: .touchUpInside)
         
         return button
     }()
     
-    private lazy var dogButton: UIButton = {
+    private lazy var animalsButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Dogs", for: .normal)
+        button.setTitle("Animals", for: .normal)
         button.applyStyle()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(
             UIAction{ [weak self] _ in
-                self?.openDogPage()
+                self?.openAnimalsPage()
             }, for: .touchUpInside)
         return button
     }()
@@ -101,9 +98,9 @@ class MainNavigationViewController: UIViewController {
     //  MARK: Methods
     
     private func configureView() {
-        view.backgroundColor = .systemIndigo
+        view.backgroundColor = .ligthLemon
         
-        [titleLabel, catButton, dogButton, uikitTableButton, swiftuiTableButton, uiCollectionButton].forEach {
+        [titleLabel, cityButton, animalsButton, uikitTableButton, swiftuiTableButton, uiCollectionButton].forEach {
             view.addSubview($0) // добавила сразу все элементы
         }
         
@@ -113,17 +110,17 @@ class MainNavigationViewController: UIViewController {
             titleLabel.widthAnchor.constraint(equalToConstant: 300),
             //titleLabel.heightAnchor.constraint(equalToConstant: 60),
             
-            catButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60),
-            catButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            catButton.widthAnchor.constraint(equalToConstant: 300),
-            catButton.heightAnchor.constraint(equalToConstant: 60),
+            cityButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 60),
+            cityButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            cityButton.widthAnchor.constraint(equalToConstant: 300),
+            cityButton.heightAnchor.constraint(equalToConstant: 60),
             
-            dogButton.topAnchor.constraint(equalTo: catButton.bottomAnchor, constant: 30),
-            dogButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            dogButton.widthAnchor.constraint(equalToConstant: 300),
-            dogButton.heightAnchor.constraint(equalToConstant: 60),
+            animalsButton.topAnchor.constraint(equalTo: cityButton.bottomAnchor, constant: 30),
+            animalsButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            animalsButton.widthAnchor.constraint(equalToConstant: 300),
+            animalsButton.heightAnchor.constraint(equalToConstant: 60),
             
-            uikitTableButton.topAnchor.constraint(equalTo: dogButton.bottomAnchor, constant: 30),
+            uikitTableButton.topAnchor.constraint(equalTo: animalsButton.bottomAnchor, constant: 30),
             uikitTableButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             uikitTableButton.widthAnchor.constraint(equalToConstant: 300),
             uikitTableButton.heightAnchor.constraint(equalToConstant: 60),
@@ -142,18 +139,18 @@ class MainNavigationViewController: UIViewController {
         
     }
     
-    private func openCatPage() {
-        let catVC = CatsPickerViewController()
-        catVC.title = "Cats"
-        navigationController?.pushViewController(catVC, animated: true)
+    private func openCityage() {
+        let cityPlacesVC = CityPlacesPickerViewController()
+        cityPlacesVC.title = "Places in the City"
+        navigationController?.pushViewController(cityPlacesVC, animated: true)
     }
-    private func openDogPage() {
-        let dogView = DogsPickerView() {  // замыкание для возврата
+    private func openAnimalsPage() {
+        let animalsView = AnimalsPickerView() {  // замыкание для возврата
             self.navigationController?.popViewController(animated: true)
         }
         
-        let hostingController = UIHostingController(rootView: dogView) //это SwiftUI View (struct), а не UIViewController поэтому нужно обернуть в UIHostingController
-        hostingController.title = "Dogs"
+        let hostingController = UIHostingController(rootView: animalsView) //это SwiftUI View (struct), а не UIViewController поэтому нужно обернуть в UIHostingController
+        hostingController.title = "Animals"
         
         navigationController?.pushViewController(hostingController, animated: true)
     }

@@ -1,4 +1,4 @@
-# 🐾 Pet Explorer  
+# На данный момент описание неактульно - приложение в работе!
 *Гибридное iOS-приложение с навигацией между 4 экранами: UIKit + SwiftUI*
 
 ![Swift](https://img.shields.io/badge/Swift-5.9-orange.svg)  

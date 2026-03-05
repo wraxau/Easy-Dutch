@@ -6,12 +6,12 @@ extension UIButton {
     
     func applyStyle() {
         titleLabel?.font = .systemFont(ofSize: 16)
-        backgroundColor = .systemGray2
-        setTitleColor(.white, for: .normal)
+        backgroundColor = .darkBlue
+        setTitleColor(.ligthLemon, for: .normal)
         layer.cornerRadius = 20
-        layer.shadowOpacity = 0.5
+        layer.shadowOpacity = 0.2
         layer.masksToBounds = false
-        layer.shadowRadius = 8
+        layer.shadowRadius = 2
         layer.shadowColor = UIColor.black.cgColor
     }
 }

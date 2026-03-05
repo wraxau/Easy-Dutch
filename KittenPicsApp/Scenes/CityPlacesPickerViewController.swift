@@ -1,7 +1,7 @@
 import UIKit
 import SwiftUI
 
-class CatsPickerViewController: UIViewController {
+class CityPlacesPickerViewController: UIViewController {
 
     
 // MARK: Constants
@@ -19,11 +19,11 @@ class CatsPickerViewController: UIViewController {
     // это реализация лямба функции котоорая сразу возаращет лейбл, который мне нужен
     private var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tap one of the buttons to see a cat!"
-        label.textColor = .white
+        label.text = "Let's learn city vocablary in Dutch"
+        label.textColor = .darkCyan
         label.numberOfLines = 0 // текст занимает столько строк, сколько ему нужно, чтобы норм помещаться
-        label.backgroundColor = .black
-        label.font = .systemFont(ofSize: 20)
+        //label.backgroundColor = .darkCyan
+        label.font = .systemFont(ofSize: 22)
         label.layer.cornerRadius = 10.0
         label.clipsToBounds = true //  чтобы скругление краев background у label работало
         label.textAlignment = .center
@@ -35,8 +35,8 @@ class CatsPickerViewController: UIViewController {
     private lazy var leftButton: UIButton = {
         let leftButton = UIButton()
         leftButton.setTitle("Left", for: .normal)
-        leftButton.setTitleColor(.white, for: .normal)
-        leftButton.backgroundColor = .black
+        leftButton.setTitleColor(.ligthLemon, for: .normal)
+        leftButton.backgroundColor = .darkCyan
         leftButton.layer.cornerRadius = 12  // закругление
         leftButton.clipsToBounds = true
         leftButton.addAction(
@@ -51,8 +51,8 @@ class CatsPickerViewController: UIViewController {
     private lazy var rightButton: UIButton = {
         let rightButton = UIButton()
         rightButton.setTitle("Right", for: .normal)
-        rightButton.setTitleColor(.white, for: .normal)
-        rightButton.backgroundColor = .black
+        rightButton.setTitleColor(.ligthLemon, for: .normal)
+        rightButton.backgroundColor = .darkCyan
         rightButton.layer.cornerRadius = 12  // закругление
         rightButton.clipsToBounds = true
         rightButton.addAction(
@@ -64,19 +64,37 @@ class CatsPickerViewController: UIViewController {
 
     }()
     
+    private lazy var answerButton: UIButton = {
+        let answerButton = UIButton()
+        answerButton.setTitle("Show answer", for: .normal)
+        answerButton.setTitleColor(.ligthLemon, for: .normal)
+        answerButton.backgroundColor = .darkCyan
+        answerButton.layer.cornerRadius = 12  // закругление
+        answerButton.clipsToBounds = true
+        answerButton.addAction(
+            UIAction { [weak self] _ in
+                self?.showAnswer()
+            }, for: .touchUpInside)
+        answerButton.translatesAutoresizingMaskIntoConstraints = false
+        return answerButton
+
+    }()
+    
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true // изображение не будет вылезать за границы
+        imageView.layer.cornerRadius = 20 // скруглила углы
         imageView.contentMode = .scaleAspectFit // изображение сохраняет свои изначальные пропорции
         imageView.image = UIImage(named: images[0])
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        
         return imageView
     }()
     
     
 // MARK: Properties
     
-    let images: [String] = ["cat1","cat2","cat3","cat4","cat5","cat6","cat7","cat8","cat9","cat10",]
+    let images: [String] = ["amsterdam","bakery","beautySalon","carMechanic","clothesStore","coffeeShop","cyclingLine","flowerShop","gasStation","gym","home","hospital","hotel","kindegarden","library","office","park","pharmacy","policeOffice","postOffice","restaraunt","school","shoppingMall","street","supermarket","uni"]
     private var currentIndex = 0
 
 
@@ -94,7 +112,7 @@ class CatsPickerViewController: UIViewController {
     
     // используем Constarints а не Frame, так как Constraints адаптивные. Хотя Frame намного быстрее
     private func configureView() {
-        view.backgroundColor = .systemIndigo
+        view.backgroundColor = .ligthLemon
         view.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
@@ -115,6 +133,7 @@ class CatsPickerViewController: UIViewController {
         
         view.addSubview(leftButton)
         view.addSubview(rightButton)
+        view.addSubview(answerButton)
         
         NSLayoutConstraint.activate([
             
@@ -131,48 +150,139 @@ class CatsPickerViewController: UIViewController {
             rightButton.widthAnchor.constraint(equalTo: leftButton.widthAnchor),
             rightButton.heightAnchor.constraint(equalToConstant: 30),
             // расстояние между кнопками
-            leftButton.trailingAnchor.constraint(lessThanOrEqualTo: rightButton.leadingAnchor, constant: -20)
+            leftButton.trailingAnchor.constraint(lessThanOrEqualTo: rightButton.leadingAnchor, constant: -20),
+            
+            answerButton.topAnchor.constraint(equalTo: leftButton.bottomAnchor, constant: 30),
+            answerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            answerButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60),
+            // расстояние между кнопками
+            answerButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60)
             
         ])
         
         
     }
     
-    private func updateLabel(x: Int) {
+    private func updateLabelWithEnglish(x: Int) {
+        
+        titleLabel.textColor = .darkCyan
+        titleLabel.font = .systemFont(ofSize: 22)
+        
         switch x {
-        case 0:
-            titleLabel.backgroundColor = .gray
-            titleLabel.text = "Business cat"
         case 1:
-            titleLabel.backgroundColor = .darkGray
-            titleLabel.text = "Gloating cat"
+            titleLabel.text = "Bakery"
         case 2:
-            titleLabel.backgroundColor = .gray
-            titleLabel.text = "Pomantic cat"
+            titleLabel.text = "Beauty shop"
         case 3:
-            titleLabel.backgroundColor = .darkGray
-            titleLabel.text = "Chill kitten"
+            titleLabel.text = "Сar service"
         case 4:
-            titleLabel.backgroundColor = .gray
-            titleLabel.text = "Mac enjoyer kitten"
+            titleLabel.text = "Clothes shop"
         case 5:
-            titleLabel.backgroundColor = .darkGray
-            titleLabel.text = "Screaming kitten"
+            titleLabel.text = "Coffee shop"
         case 6:
-            titleLabel.backgroundColor = .gray
-            titleLabel.text = "Official cat"
+            titleLabel.text = "Cycling line"
         case 7:
-            titleLabel.backgroundColor = .darkGray
-            titleLabel.text = "Cat in the trouble"
+            titleLabel.text = "Flower shop"
         case 8:
-            titleLabel.backgroundColor = .gray
-            titleLabel.text = "Cute cat"
+            titleLabel.text = "Gas station"
         case 9:
-            titleLabel.backgroundColor = .darkGray
-            titleLabel.text = "Celebrity cat"
+            titleLabel.text = "Gym"
+        case 10:
+            titleLabel.text = "Home"
+        case 11:
+            titleLabel.text = "Hospital"
+        case 12:
+            titleLabel.text = "Hotel"
+        case 13:
+            titleLabel.text = "Kindegarden"
+        case 14:
+            titleLabel.text = "Library"
+        case 15:
+            titleLabel.text = "Office"
+        case 16:
+            titleLabel.text = "Park"
+        case 17:
+            titleLabel.text = "Pharmacy"
+        case 18:
+            titleLabel.text = "Police office"
+        case 19:
+            titleLabel.text = "Post office"
+        case 20:
+            titleLabel.text = "Restataunt"
+        case 21:
+            titleLabel.text = "School"
+        case 22:
+            titleLabel.text = "Shopping mall"
+        case 23:
+            titleLabel.text = "Street"
+        case 24:
+            titleLabel.text = "Supermarket"
+        case 25:
+            titleLabel.text = "University"
         default:
-            titleLabel.backgroundColor = .gray
-            titleLabel.text = "Typical cat"
+            titleLabel.text = "Let's learn city vocablary in Dutch"
+        }
+    }
+    
+    private func updateLabelWithAnswer(x: Int) {
+        
+        titleLabel.textColor = .brightOrange
+        titleLabel.font = .boldSystemFont(ofSize: 30)
+        titleLabel.backgroundColor = .lightOrange
+
+        switch x {
+        case 1:
+            titleLabel.text = "Bakkerij"
+        case 2:
+            titleLabel.text = "Schoonheidssalon"
+        case 3:
+            titleLabel.text = "Garage"
+        case 4:
+            titleLabel.text = "Kledingwinkel"
+        case 5:
+            titleLabel.text = "Koffiebar"
+        case 6:
+            titleLabel.text = "Fietspad"
+        case 7:
+            titleLabel.text = "Bloemenwinkel"
+        case 8:
+            titleLabel.text = "Tankstation"
+        case 9:
+            titleLabel.text = "Sportschool"
+        case 10:
+            titleLabel.text = "Huis"
+        case 11:
+            titleLabel.text = "Ziekenhuis"
+        case 12:
+            titleLabel.text = "Hotel"
+        case 13:
+            titleLabel.text = "Kleuterschool"
+        case 14:
+            titleLabel.text = "Bibliotheek"
+        case 15:
+            titleLabel.text = "Kantoor"
+        case 16:
+            titleLabel.text = "Park"
+        case 17:
+            titleLabel.text = "Apotheek"
+        case 18:
+            titleLabel.text = "Politiebureau"
+        case 19:
+            titleLabel.text = "Postkantoor"
+        case 20:
+            titleLabel.text = "Restaurant"
+        case 21:
+            titleLabel.text = "School"
+        case 22:
+            titleLabel.text = "Winkelcentrum"
+        case 23:
+            titleLabel.text = "Straat"
+        case 24:
+            titleLabel.text = "Supermarkt"
+        case 25:
+            titleLabel.text = "Universiteit"
+        default:
+            titleLabel.text = "Let's learn city vocablary in Dutch"
         }
     }
     
@@ -182,7 +292,8 @@ class CatsPickerViewController: UIViewController {
             currentIndex = 0
         }
         updateImage()
-        updateLabel(x: currentIndex)
+        updateLabelWithEnglish(x: currentIndex)
+        //titleLabel.isHidden = true
     }
 
     private func showPreviousImage() {
@@ -191,11 +302,18 @@ class CatsPickerViewController: UIViewController {
             currentIndex = images.count - 1
         }
         updateImage()
-        updateLabel(x: currentIndex)
+        updateLabelWithEnglish(x: currentIndex)
+        //titleLabel.isHidden = true
     }
 
     private func updateImage() {
         imageView.image = UIImage(named: images[currentIndex])
+    }
+    
+    private func showAnswer() {
+        updateLabelWithAnswer(x: currentIndex)
+        //titleLabel.textColor = .brightOrange
+        //titleLabel.isHidden = false
     }
     
 
