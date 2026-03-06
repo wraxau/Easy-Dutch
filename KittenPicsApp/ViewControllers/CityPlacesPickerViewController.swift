@@ -35,10 +35,11 @@ class CityPlacesPickerViewController: UIViewController {
     private lazy var leftButton: UIButton = {
         let leftButton = UIButton()
         leftButton.setTitle("Left", for: .normal)
-        leftButton.setTitleColor(.ligthLemon, for: .normal)
+        leftButton.applyStyle()
+        /*leftButton.setTitleColor(.ligthLemon, for: .normal)
         leftButton.backgroundColor = .darkCyan
         leftButton.layer.cornerRadius = 12  // закругление
-        leftButton.clipsToBounds = true
+        leftButton.clipsToBounds = true*/
         leftButton.addAction(
             UIAction { [weak self] _ in
                 self?.showPreviousImage()
@@ -51,10 +52,7 @@ class CityPlacesPickerViewController: UIViewController {
     private lazy var rightButton: UIButton = {
         let rightButton = UIButton()
         rightButton.setTitle("Right", for: .normal)
-        rightButton.setTitleColor(.ligthLemon, for: .normal)
-        rightButton.backgroundColor = .darkCyan
-        rightButton.layer.cornerRadius = 12  // закругление
-        rightButton.clipsToBounds = true
+        rightButton.applyStyle()
         rightButton.addAction(
             UIAction { [weak self] _ in
                 self?.showNextImage()
@@ -67,10 +65,7 @@ class CityPlacesPickerViewController: UIViewController {
     private lazy var answerButton: UIButton = {
         let answerButton = UIButton()
         answerButton.setTitle("Show answer", for: .normal)
-        answerButton.setTitleColor(.ligthLemon, for: .normal)
-        answerButton.backgroundColor = .darkCyan
-        answerButton.layer.cornerRadius = 12  // закругление
-        answerButton.clipsToBounds = true
+        answerButton.applyStyle()
         answerButton.addAction(
             UIAction { [weak self] _ in
                 self?.showAnswer()

@@ -5,24 +5,36 @@ class FoodTableViewController: UIViewController {
     // MARK: Constants
     
     private let dishes = [
-        "Pizza 🍕", "Cheeseburger 🍔", "Pasta 🍝", "Sushi 🍣", "Tacos 🌮",
-        "Cheesecake 🍰", "Brownie 🍫", "Chocolate Bar 🍫", "Ice cream 🍦",
-        "Salad 🥗", "Steak 🥩", "Fried Chicken 🍗", "Hot Dog 🌭", "French Fries 🍟",
-        "Shrimp 🍤", "Soup 🍲", "Ramen 🍜", "Sandwich 🥪", "Falafel 🧆", "Doughnut 🍩",
-        "Croissant 🥐", "Avocado Toast 🥑", "Pancakes 🥞", "Samosa 🥟"
+        "Chocolate bar 🍫", "Ice cream 🍦",
+        "Salad 🥗", "Beef steak 🥩", "Fried chicken 🍗", "Hot dog 🌭", "French fries 🍟",
+        "Shrimp 🍤", "Soup 🍲", "Ramen 🍜", "Sandwich 🥪", "Falafel 🧆", "Donut 🍩",
+        "Croissant 🥐", "Avocado toast 🥑", "Pancakes 🥞",
+        "Lasagne 🍲", "Paella", "Kebab", "Pizza Margherita 🍕", "Curry 🍛",
+        "Fish and chips 🐟🍟", "Schnitzel", "Waffles 🧇", "Apple pie 🥧",
+        "Crêpe 🥞", "Hummus", "Risotto", "Burrito 🌯", "Chili con carne",
+        "Goulash", "Moussaka", "Quiche", "Tapas", "Omelet 🍳", "Bagel 🥯"
+    ]
+    
+    private let dishesNL = [
+        "Chocoladereep 🍫", "IJs 🍦", "Salade 🥗", "Biefstuk 🥩",
+        "Gebakken kip 🍗", "Hotdog 🌭", "Frietjes 🍟", "Garnaal 🍤",
+        "Soep 🍲", "Ramen 🍜", "Broodje 🥪", "Falafel 🧆", "Donut 🍩",
+        "Croissant 🥐", "Avocado toast 🥑", "Pannenkoeken 🥞",
+        "Lasagne 🍲", "Paella", "Kebab", "Pizza Margherita 🍕",
+        "Curry 🍛", "Vis met friet 🐟🍟", "Schnitzel", "Wafels 🧇",
+        "Appeltaart 🥧", "Crêpe 🥞", "Hummus", "Risotto", "Burrito 🌯",
+        "Chili con carne", "Goulash", "Moussaka", "Quiche", "Tapas",
+        "Omelet 🍳", "Bagel 🥯"
     ]
     
     // Заголовок с текущим выбором
     private let statusLabel: UILabel = {
         let label = UILabel()
         label.text = "Choose a dish"
-        label.font = .boldSystemFont(ofSize: 24)
+        label.font = .boldSystemFont(ofSize: 30)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = .label
-        label.backgroundColor = .systemPurple.withAlphaComponent(0.3) //прозрачность
-        label.layer.cornerRadius = 12
-        label.clipsToBounds = true
+        label.textColor = .darkCyan
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -38,7 +50,7 @@ class FoodTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemIndigo
+        view.backgroundColor = .ligthLemon
         
         setupStatusLabel()
         setupTableView()
@@ -56,7 +68,7 @@ class FoodTableViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DishCell")
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .systemGroupedBackground
+        tableView.backgroundColor = .lightOrange.withAlphaComponent(0.5)
         tableView.alwaysBounceVertical = true
         tableView.separatorStyle = .singleLine // разделители между ячеек
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16) // отступы
@@ -77,7 +89,7 @@ class FoodTableViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: statusLabel.bottomAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             
         ])
     }
@@ -94,11 +106,11 @@ extension FoodTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DishCell", for: indexPath)
         let dish = dishes[indexPath.row]
         cell.textLabel?.text = dish
-        cell.textLabel?.font = .systemFont(ofSize: 18)
+        cell.textLabel?.font = .systemFont(ofSize: 25)
         // Подсветка выбранной ячейки
         if dish == selectedDish {
-            cell.backgroundColor = .systemIndigo.withAlphaComponent(0.2)
-            cell.textLabel?.textColor = .systemIndigo
+            cell.backgroundColor = .lightOrange.withAlphaComponent(0.5)
+            cell.textLabel?.textColor = .darkBlue
         } else {
             cell.backgroundColor = .clear
             cell.textLabel?.textColor = .label
@@ -112,15 +124,18 @@ extension FoodTableViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let dish = dishes[indexPath.row]
-        selectedDish = dish
-        statusLabel.text = "Your choice:\n\(dish)"
+        if indexPath.row < dishesNL.count {
+            statusLabel.text = dishesNL[indexPath.row]
+            statusLabel.textColor = .brightOrange
+            statusLabel.font = .boldSystemFont(ofSize: 30)
+            selectedDish = dishes[indexPath.row]
+        }
         
         UIView.animate(withDuration: 0.2) {
-            self.statusLabel.backgroundColor = .systemGreen.withAlphaComponent(0.4)
+            self.statusLabel.backgroundColor = .ligthLemon.withAlphaComponent(0.6)
         } completion: { _ in
             UIView.animate(withDuration: 0.8) {
-                self.statusLabel.backgroundColor = .systemYellow.withAlphaComponent(0.3)
+                self.statusLabel.backgroundColor = .ligthLemon.withAlphaComponent(0.6)
             }
         }
 

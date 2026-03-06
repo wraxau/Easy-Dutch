@@ -24,7 +24,7 @@ class MainNavigationViewController: UIViewController {
     private lazy var cityButton: UIButton = {
         let button = UIButton()
         button.setTitle("Places in the City", for: .normal)
-        button.applyStyle()
+        button.applyStyleForBigButtons()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction( // обработчик нажатия на кнопку
             UIAction{ [weak self] _ in
@@ -37,7 +37,7 @@ class MainNavigationViewController: UIViewController {
     private lazy var animalsButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Animals", for: .normal)
-        button.applyStyle()
+        button.applyStyleForBigButtons()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(
             UIAction{ [weak self] _ in
@@ -49,7 +49,7 @@ class MainNavigationViewController: UIViewController {
     private lazy var uikitTableButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Food", for: .normal)
-        button.applyStyle()
+        button.applyStyleForBigButtons()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(
             UIAction{ [weak self] _ in
@@ -58,22 +58,22 @@ class MainNavigationViewController: UIViewController {
         return button
     }()
     
-    private lazy var swiftuiTableButton: UIButton = {
+    private lazy var basicPhrasesButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Drinks", for: .normal)
-        button.applyStyle()
+        button.setTitle("Basic phrases", for: .normal)
+        button.applyStyleForBigButtons()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(
             UIAction{ [weak self] _ in
-                self?.openSwiftUIPage()
+                self?.openBasicPhrasesPage()
             }, for: .touchUpInside)
         return button
     }()
     
     private lazy var uiCollectionButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Netherlands", for: .normal)
-        button.applyStyle()
+        button.setTitle("Flash cards", for: .normal)
+        button.applyStyleForBigButtons()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addAction(
             UIAction{ [weak self] _ in
@@ -100,7 +100,7 @@ class MainNavigationViewController: UIViewController {
     private func configureView() {
         view.backgroundColor = .ligthLemon
         
-        [titleLabel, cityButton, animalsButton, uikitTableButton, swiftuiTableButton, uiCollectionButton].forEach {
+        [titleLabel, cityButton, animalsButton, uikitTableButton, basicPhrasesButton, uiCollectionButton].forEach {
             view.addSubview($0) // добавила сразу все элементы
         }
         
@@ -125,12 +125,12 @@ class MainNavigationViewController: UIViewController {
             uikitTableButton.widthAnchor.constraint(equalToConstant: 300),
             uikitTableButton.heightAnchor.constraint(equalToConstant: 60),
             
-            swiftuiTableButton.topAnchor.constraint(equalTo: uikitTableButton.bottomAnchor, constant: 30),
-            swiftuiTableButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            swiftuiTableButton.widthAnchor.constraint(equalToConstant: 300),
-            swiftuiTableButton.heightAnchor.constraint(equalToConstant: 60),
+            basicPhrasesButton.topAnchor.constraint(equalTo: uikitTableButton.bottomAnchor, constant: 30),
+            basicPhrasesButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            basicPhrasesButton.widthAnchor.constraint(equalToConstant: 300),
+            basicPhrasesButton.heightAnchor.constraint(equalToConstant: 60),
             
-            uiCollectionButton.topAnchor.constraint(equalTo: swiftuiTableButton.bottomAnchor, constant: 30),
+            uiCollectionButton.topAnchor.constraint(equalTo: basicPhrasesButton.bottomAnchor, constant: 30),
             uiCollectionButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             uiCollectionButton.widthAnchor.constraint(equalToConstant: 300),
             uiCollectionButton.heightAnchor.constraint(equalToConstant: 60),
@@ -161,20 +161,20 @@ class MainNavigationViewController: UIViewController {
         navigationController?.pushViewController(tableVC, animated: true)
     }
     
-    private func openSwiftUIPage() {
-        let swiftUIView =  DrinkViewList {
+    private func openBasicPhrasesPage() {
+        let swiftUIView = BasicPhrasesViewList {
             self.navigationController?.popViewController(animated: true)
         }
         
         let hostingController = UIHostingController(rootView: swiftUIView)
-        hostingController.title = "Drinks"
+        hostingController.title = "Basic phrases"
         
         navigationController?.pushViewController(hostingController, animated: true)
     }
     
     private func openUICollectionPage() {
         let tableVC = UICollectionViewController()
-        tableVC.title = "Netherlands"
+        tableVC.title = "Flash cards"
         navigationController?.pushViewController(tableVC, animated: true)
     }
     

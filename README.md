@@ -63,4 +63,37 @@
 
 ---
 
+## Архитектура MVC
 
+KittenPicsApp/
+├── App/                          # Точка входа в приложение
+│   ├── AppDelegate.swift         # Жизненный цикл приложения
+│   └── SceneDelegate.swift       # Управление сценами (UIWindow)
+│
+├── Models/                       # Слои данных и бизнес-модели
+│   └── FlashCard.swift           # Модель для флеш-карточек (EN ↔ NL)
+│
+├── ViewControllers/              # UIKit контроллеры
+│   ├── CollectionViewController/
+│   │   └── UICollectionViewController.swift  # Коллекция с городами
+│   ├── CityPlacesPickerViewController.swift
+│   ├── FoodTableViewController.swift
+│   └── MainNavigationViewController.swift    # Главный навигационный контроллер
+│
+├── SwiftUIViews/                 # SwiftUI представления
+│   ├── AnimalsPickerView.swift
+│   └── BasicPhrasesViewList.swift
+│
+├── Views/                        # Кастомные UI компоненты
+│   └── Cells/                    # Ячейки для коллекций и таблиц
+│       ├── NorthHollandCollectionViewCell.swift
+│       └── ProfessionsCollectionViewCell.swift
+│
+├── Extensions/                   # Расширения стандартных классов
+│   ├── ButtonStyle.swift         # Кастомные стили кнопок
+│   └── ColorPalette.swift        # Цветовая палитра приложения
+│
+└── Resources/                    # Ресурсы (ассеты, storyboard, plist)
+    ├── Assets.xcassets
+    ├── Info.plist
+    └── LaunchScreen.storyboard
