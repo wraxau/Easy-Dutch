@@ -33,7 +33,7 @@
 
 | Экран             | Изображение                                                                 |
 |-------------------|-----------------------------------------------------------------------------|
-| **Launch Screen** | ![Screenshots](Screenshots/launchccreen.png)                                     |
+| **Launch Screen** | ![Screenshots](Screenshots/launchscreen1.png)                                     |
 | **Главное меню**  | ![Screenshots](Screenshots/menu.png)                                           |
 | **Страница для изучения названий различных мест в городе и организаций (1)**    | ![Screenshots](Screenshots/places1.png)                                              |
 | **Страница для изучения названий различных мест в городе и организаций (2)**    | ![Screenshots](Screenshots/places2.png)                                              |
@@ -41,9 +41,9 @@
 | **Страница для изучения названий животных (1)**    | ![Screenshots](Screenshots/animals1.png)                                              |
 | **Страница для изучения названий животных (2)**    | ![Screenshots](Screenshots/animals2.png)                                              |
 | **Страница для изучения названий животных (3)**    | ![Screenshots](Screenshots/animals3.png)                                              |
-| **Страница для изучения названий блюд (1)**       | ![Screenshots](Screenshots/food1.png)                                              |
-| **Страница для изучения названий блюд (2)**       | ![Screenshots](Screenshots/food2.png)                                            |
-| **Страница для изучения названий блюд (3)**       | ![Screenshots](Screenshots/food3.png)                                            |
+| **Страница для изучения названий блюд (1)**       | ![Screenshots](Screenshots/foodDutch1.png)                                              |
+| **Страница для изучения названий блюд (2)**       | ![Screenshots](Screenshots/foodDutch2.png)                                            |
+| **Страница для изучения названий блюд (3)**       | ![Screenshots](Screenshots/foodDutch3.png)                                            |
 | **Страница для изучения полезных фраз (1)**       | ![Screenshots](Screenshots/phrases1.png)                                            |
 | **Страница для изучения полезных фраз (2)**       | ![Screenshots](Screenshots/phrases2.png)                                            |
 | **Страница для изучения полезных фраз (3)**       | ![Screenshots](Screenshots/phrases3.png)                                            |
