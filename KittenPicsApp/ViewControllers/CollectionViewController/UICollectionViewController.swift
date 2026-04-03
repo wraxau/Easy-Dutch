@@ -30,8 +30,8 @@ final class UICollectionViewController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout) // стандартный инициализатор для коллекции
         collection.delegate = self // viewController делегирует все события из коллекции(скролл, нажатия на ячейки)
         collection.dataSource = self
-        collection.register(HobbiesCollectionViewCell.self, forCellWithReuseIdentifier: HobbiesCollectionViewCell.identifier)
-        collection.register(ProfessionsCollectionViewCell.self, forCellWithReuseIdentifier: ProfessionsCollectionViewCell.identifier)
+        collection.register(FlashCardCollectionViewCell.self,
+                           forCellWithReuseIdentifier: FlashCardCollectionViewCell.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
@@ -63,7 +63,6 @@ final class UICollectionViewController: UIViewController {
     
     
 }
-
 // MARK: - Delegate
 
 extension UICollectionViewController: UICollectionViewDelegate {
@@ -71,14 +70,17 @@ extension UICollectionViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let section = CollectionSectionType(rawValue: indexPath.section) else { return }
         
-        //Найти ячейку и вызвать анимацию
-        if let cell = collectionView.cellForItem(at: indexPath) {
-            switch section {
-            case .hobbies:
-                (cell as? HobbiesCollectionViewCell)?.toggleFlip()
-            case .professions:
-                (cell as? ProfessionsCollectionViewCell)?.toggleFlip()
-            }
+        if let cell = collectionView.cellForItem(at: indexPath) as? FlashCardCollectionViewCell {
+            cell.toggleFlip()
+        }
+        
+        switch section {
+        case .hobbies:
+            let card = FlashCard.hobbies[indexPath.row]
+            print(" Tapped: \(card.english) → \(card.dutch)")
+        case .professions:
+            let card = FlashCard.professions[indexPath.row]
+            print(" Tapped: \(card.english) → \(card.dutch)")
         }
     }
 }
@@ -86,6 +88,7 @@ extension UICollectionViewController: UICollectionViewDelegate {
 // MARK: - Data Source
 
 extension UICollectionViewController: UICollectionViewDataSource {
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         CollectionSectionType.allCases.count
     } // возвращаем количество элементов в секции
@@ -111,23 +114,34 @@ extension UICollectionViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        switch section { // создаем ячейку
+        let card: FlashCard
+        switch section {
         case .hobbies:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HobbiesCollectionViewCell.identifier, for: indexPath
-            ) as? HobbiesCollectionViewCell else { return UICollectionViewCell() }
-            
-             // после того, как проверили, что это нужная ячейка - вызываем метод конфигурации этой ячейки
-            let card = FlashCard.hobbies[indexPath.row]
-            cell.configure(with: card)
-            return cell
-            
+            card = FlashCard.hobbies[indexPath.row]
         case .professions:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfessionsCollectionViewCell.identifier, for: indexPath
-            ) as? ProfessionsCollectionViewCell else { return UICollectionViewCell() }
-            let card = FlashCard.professions[indexPath.row]
-            cell.configure(with: card)
-            return cell
+            card = FlashCard.professions[indexPath.row]
         }
+        
+        guard let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: FlashCardCollectionViewCell.identifier,
+            for: indexPath
+        ) as? FlashCardCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        // Выбираем стиль в зависимости от секции
+        let style: FlashCardCellStyle
+        switch section {
+        case .hobbies:
+            style = .hobbies
+        case .professions:
+            style = .professions  
+        }
+        
+        // Конфигурируем: данные + стиль
+        cell.configure(with: card, style: style)
+        
+        return cell
     }
 }
 
