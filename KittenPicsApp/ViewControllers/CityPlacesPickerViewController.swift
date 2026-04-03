@@ -36,10 +36,6 @@ class CityPlacesPickerViewController: UIViewController {
         let leftButton = UIButton()
         leftButton.setTitle("Left", for: .normal)
         leftButton.applyStyle()
-        /*leftButton.setTitleColor(.ligthLemon, for: .normal)
-        leftButton.backgroundColor = .darkCyan
-        leftButton.layer.cornerRadius = 12  // закругление
-        leftButton.clipsToBounds = true*/
         leftButton.addAction(
             UIAction { [weak self] _ in
                 self?.showPreviousImage()
