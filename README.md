@@ -45,7 +45,7 @@
 | **Страница для изучения названий блюд (2)**       | ![Screenshots](Screenshots/food1.png)                                            |                                  |
 | **Страница для изучения полезных фраз (1)**       | ![Screenshots](Screenshots/phrases.png)                                            |
 | **Страница для названий профессий и хобби (1)**       | ![Screenshots](Screenshots/flashCards.png)                                            |
-| **Страница для названий профессий и хобби (2)**       | ![Screenshots](Screenshots/flashcards1.png)                                            |
+| **Страница для названий профессий и хобби (2)**       | ![Screenshots](Screenshots/flashCards1.png)                                            |
 | **Страница с переводчиком (1)**       | ![Screenshots](Screenshots/translate.png)                                            |
 | **Страница с переводчиком (2)**       | ![Screenshots](Screenshots/translate1.png)   
 ---
