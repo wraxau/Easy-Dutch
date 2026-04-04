@@ -34,7 +34,7 @@
 | Экран             | Изображение                                                                 |
 |-------------------|-----------------------------------------------------------------------------|
 | **Launch Screen** | ![Screenshots](Screenshots/launchscreen1.png)                                     |
-| **Главное меню**  | ![Screenshots](Screenshots/menu.png)                                           |
+| **Главное меню**  | ![Screenshots](Screenshots/mainPage.png)                                           |
 | **Страница для изучения названий различных мест в городе и организаций (1)**    | ![Screenshots](Screenshots/places1.png)                                              |
 | **Страница для изучения названий различных мест в городе и организаций (2)**    | ![Screenshots](Screenshots/places2.png)                                              |
 | **Страница для изучения названий различных мест в городе и организаций (2)**    | ![Screenshots](Screenshots/places3.png)                                              |
