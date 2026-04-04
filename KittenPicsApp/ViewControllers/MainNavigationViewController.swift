@@ -82,11 +82,23 @@ class MainNavigationViewController: UIViewController {
         return button
     }()
     
+    private lazy var translateButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Translator", for: .normal)
+        button.applyStyleForBigButtons()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addAction(
+            UIAction{ [weak self] _ in
+                self?.openTranslatePage()
+            }, for: .touchUpInside)
+        return button
+    }()
+    
     
     // MARK: Properties
     
     // MARK: - Lifecycle
-    // - жизенный цикл ViewController - что когда подругжается, происходит и тд. Мы можем вызывать разные методы в разное время
+    // - жизненный цикл ViewController - что когда подругжается, происходит и тд. Мы можем вызывать разные методы в разное время
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,9 +110,9 @@ class MainNavigationViewController: UIViewController {
     //  MARK: Methods
     
     private func configureView() {
-        view.backgroundColor = .ligthLemon
+        view.backgroundColor = .systemBackground
         
-        [titleLabel, cityButton, animalsButton, uikitTableButton, basicPhrasesButton, uiCollectionButton].forEach {
+        [titleLabel, cityButton, animalsButton, uikitTableButton, basicPhrasesButton, uiCollectionButton, translateButton].forEach {
             view.addSubview($0) // добавила сразу все элементы
         }
         
@@ -134,6 +146,11 @@ class MainNavigationViewController: UIViewController {
             uiCollectionButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             uiCollectionButton.widthAnchor.constraint(equalToConstant: 300),
             uiCollectionButton.heightAnchor.constraint(equalToConstant: 60),
+            
+            translateButton.topAnchor.constraint(equalTo: uiCollectionButton.bottomAnchor, constant: 30),
+            translateButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            translateButton.widthAnchor.constraint(equalToConstant: 300),
+            translateButton.heightAnchor.constraint(equalToConstant: 60),
             
         ])
         
@@ -175,6 +192,12 @@ class MainNavigationViewController: UIViewController {
     private func openUICollectionPage() {
         let tableVC = UICollectionViewController()
         tableVC.title = "Flash cards"
+        navigationController?.pushViewController(tableVC, animated: true)
+    }
+    
+    private func openTranslatePage() {
+        let tableVC = TranslatorViewController()
+        tableVC.title = "Translator"
         navigationController?.pushViewController(tableVC, animated: true)
     }
     

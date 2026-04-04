@@ -103,7 +103,7 @@ class CityPlacesPickerViewController: UIViewController {
     
     // используем Constarints а не Frame, так как Constraints адаптивные. Хотя Frame намного быстрее
     private func configureView() {
-        view.backgroundColor = .ligthLemon
+        view.backgroundColor = .systemBackground
         view.addSubview(titleLabel)
         
         NSLayoutConstraint.activate([

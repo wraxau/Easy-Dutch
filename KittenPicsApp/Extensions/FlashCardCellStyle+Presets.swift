@@ -5,7 +5,7 @@ import UIKit
 extension FlashCardCellStyle {
     
     static let hobbies = FlashCardCellStyle(
-        gradientEng:[ UIColor.darkBlue.cgColor, UIColor.ligthLemon.cgColor], gradientDutch: [UIColor.ligthLemon.cgColor, UIColor.lightOrange.cgColor],
+        gradientEng:[ UIColor.white.cgColor, UIColor.ligthLemon.cgColor], gradientDutch: [UIColor.white.cgColor, UIColor.lightOrange.cgColor],
         engLanguage: "en-US",
         dutchLanguage: "nl-NL",
         speechRate: 0.5,
@@ -15,12 +15,12 @@ extension FlashCardCellStyle {
         titleAlignment: .center,
         iconPosition: .top,
         iconSize: .proporsional(0.65),
-        soundButtonColor: .brightOrange
+        soundButtonColor: .systemRed
         )
     
     static let professions = FlashCardCellStyle(
     
-        gradientEng:[ UIColor.ligthLemon.cgColor, UIColor.darkBlue.cgColor], gradientDutch: [UIColor.lightOrange.cgColor, UIColor.ligthLemon.cgColor],
+        gradientEng:[ UIColor.white.cgColor, UIColor.ligthLemon.cgColor], gradientDutch: [UIColor.white.cgColor, UIColor.lightOrange.cgColor],
         engLanguage: "en-US",
         dutchLanguage: "nl-NL",
         speechRate: 0.5,
@@ -28,15 +28,9 @@ extension FlashCardCellStyle {
         iconCornerRadius: 8,
         titleFont: .systemFont(ofSize: 16, weight: .semibold),
         titleAlignment: .center,
-        iconPosition: .left,
+        iconPosition: .top,
         iconSize: .proporsional(0.65),
-        spacing: Spacing(
-                iconToTitle: 12,
-                titleToBottom: 12,
-                horizontalPadding: 12,
-                verticalPadding: 8
-            ),
-        soundButtonColor: .brightOrange
+        soundButtonColor: .systemRed
         )
              
 }

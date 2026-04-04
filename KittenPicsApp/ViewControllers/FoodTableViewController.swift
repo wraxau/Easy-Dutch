@@ -50,7 +50,7 @@ class FoodTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .ligthLemon
+        view.backgroundColor = .systemBackground
         
         setupStatusLabel()
         setupTableView()
@@ -68,7 +68,7 @@ class FoodTableViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "DishCell")
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .lightOrange.withAlphaComponent(0.5)
+        tableView.backgroundColor = .systemBackground.withAlphaComponent(0.5)
         tableView.alwaysBounceVertical = true
         tableView.separatorStyle = .singleLine // разделители между ячеек
         tableView.separatorInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16) // отступы
@@ -109,8 +109,8 @@ extension FoodTableViewController: UITableViewDataSource {
         cell.textLabel?.font = .systemFont(ofSize: 25)
         // Подсветка выбранной ячейки
         if dish == selectedDish {
-            cell.backgroundColor = .lightOrange.withAlphaComponent(0.5)
-            cell.textLabel?.textColor = .darkBlue
+            cell.backgroundColor = .systemGray3
+            cell.textLabel?.textColor = .systemGray6
         } else {
             cell.backgroundColor = .clear
             cell.textLabel?.textColor = .label
@@ -126,7 +126,7 @@ extension FoodTableViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row < dishesNL.count {
             statusLabel.text = dishesNL[indexPath.row]
-            statusLabel.textColor = .brightOrange
+            statusLabel.textColor = .darkCyan
             statusLabel.font = .boldSystemFont(ofSize: 30)
             selectedDish = dishes[indexPath.row]
         }

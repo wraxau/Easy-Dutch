@@ -86,7 +86,7 @@ struct BasicPhrasesViewList: View {
                             Spacer()
                             if pair.id == selectedPairID {
                                 Image(systemName: "checkmark.circle.fill")
-                                    .foregroundColor(.ligthLemon)
+                                    .foregroundColor(.blue)
                                     .font(.system(size: 24))
                             }
                         }

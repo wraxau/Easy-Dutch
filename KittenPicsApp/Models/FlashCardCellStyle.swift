@@ -54,7 +54,7 @@ struct FlashCardCellStyle {
         iconPosition: IconPosition = .top,
         iconSize: IconSize = .proporsional(0.65),
         spacing: Spacing = .default,
-        soundButtonColor: UIColor = .brightOrange,
+        soundButtonColor: UIColor = .systemRed,
         soundButtonSize: CGFloat = 10,
         flipDuration: TimeInterval = 0.4,
         highlightScale: CGFloat = 0.95
@@ -79,23 +79,20 @@ struct FlashCardCellStyle {
         self.flipDuration = flipDuration
         self.highlightScale = highlightScale
     }
-    
-    // Позиция иконки относително текста
+
     enum IconPosition {
         case top
         case left
         case rigth
         case custom
     }
-    
-    // Размер иконки
+
     enum IconSize {
         case proporsional (CGFloat)
         case fixed (CGFloat)
         case square
     }
     
-    // расстояние между элементами в ячейке
     struct Spacing {
         let iconToTitle: CGFloat
         let titleToBottom: CGFloat

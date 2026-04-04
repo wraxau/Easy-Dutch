@@ -175,8 +175,9 @@ class FlashCardCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             soundButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: spacing.verticalPadding),
             soundButton.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -spacing.horizontalPadding),
-            soundButton.widthAnchor.constraint(equalToConstant: style.soundButtonSize),
-            soundButton.heightAnchor.constraint(equalToConstant: style.soundButtonSize)
+            soundButton.widthAnchor.constraint(equalToConstant: 20),
+            soundButton.heightAnchor.constraint(equalToConstant: 20)
+            
             ])
     }
     

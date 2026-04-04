@@ -41,14 +41,12 @@
 | **Страница для изучения названий животных (1)**    | ![Screenshots](Screenshots/animals1.png)                                              |
 | **Страница для изучения названий животных (2)**    | ![Screenshots](Screenshots/animals2.png)                                              |
 | **Страница для изучения названий животных (3)**    | ![Screenshots](Screenshots/animals3.png)                                              |
-| **Страница для изучения названий блюд (1)**       | ![Screenshots](Screenshots/foodDutch1.png)                                              |
-| **Страница для изучения названий блюд (2)**       | ![Screenshots](Screenshots/foodDutch2.png)                                            |
-| **Страница для изучения названий блюд (3)**       | ![Screenshots](Screenshots/foodDutch3.png)                                            |
-| **Страница для изучения полезных фраз (1)**       | ![Screenshots](Screenshots/phrases1.png)                                            |
-| **Страница для изучения полезных фраз (2)**       | ![Screenshots](Screenshots/phrases2.png)                                            |
-| **Страница для изучения полезных фраз (3)**       | ![Screenshots](Screenshots/phrases3.png)                                            |
-| **Страница для названий профессий и хобби (1)**       | ![Screenshots](Screenshots/flashcards1.png)                                            |
-| **Страница для названий профессий и хобби (2)**       | ![Screenshots](Screenshots/flashcards2.png)                                            |
-| **Страница для названий профессий и хобби (3)**       | ![Screenshots](Screenshots/flashcards3.png)                                            |
+| **Страница для изучения названий блюд (1)**       | ![Screenshots](Screenshots/food.png)                                              |
+| **Страница для изучения названий блюд (2)**       | ![Screenshots](Screenshots/food1.png)                                            |                                  |
+| **Страница для изучения полезных фраз (1)**       | ![Screenshots](Screenshots/phrases.png)                                            |
+| **Страница для названий профессий и хобби (1)**       | ![Screenshots](Screenshots/flashCards.png)                                            |
+| **Страница для названий профессий и хобби (2)**       | ![Screenshots](Screenshots/flashcards1.png)                                            |
+| **Страница с переводчиком (1)**       | ![Screenshots](Screenshots/translate.png)                                            |
+| **Страница с переводчиком (2)**       | ![Screenshots](Screenshots/translate1.png)   
 ---
 
