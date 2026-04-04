@@ -5,10 +5,10 @@ import UIKit
 extension UIButton {
     
     func applyStyle() {
-        titleLabel?.font = .systemFont(ofSize: 16)
+        titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         backgroundColor = .darkBlue.withAlphaComponent(0.8)
-        setTitleColor(.ligthLemon, for: .normal)
-        layer.cornerRadius = 10
+        setTitleColor(.white, for: .normal)
+        layer.cornerRadius = 15
         layer.shadowOpacity = 0.2
         layer.masksToBounds = false
         layer.shadowRadius = 2
@@ -18,10 +18,10 @@ extension UIButton {
 extension UIButton {
     
     func applyStyleForBigButtons() {
-        titleLabel?.font = .systemFont(ofSize: 16)
+        titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         backgroundColor = .darkBlue.withAlphaComponent(0.8)
-        setTitleColor(.ligthLemon, for: .normal)
-        layer.cornerRadius = 20
+        setTitleColor(.white, for: .normal)
+        layer.cornerRadius = 28
         layer.shadowOpacity = 0.2
         layer.masksToBounds = false
         layer.shadowRadius = 2

@@ -1,16 +1,32 @@
 import Foundation
-import UIKit
 
 struct FlashCard {
     let english: String
     let dutch: String
-    let imageSymbol: String? // тут будет символ-эмоджи
+    let imageSymbol: String?
     
-    // тут у imageSymbol? поставила nil как дефолтное значение опционала
-    init(english: String, dutch: String, imageSymbol: String? = nil) {
+    let pronunciation: String?
+    let audioURL: String?
+    let definition: String?
+    let example: String?
+    
+    // MARK: - Init
+    init(
+        english: String,
+        dutch: String,
+        imageSymbol: String? = nil,
+        pronunciation: String? = nil,
+        audioURL: String? = nil,
+        definition: String? = nil,
+        example: String? = nil
+    ) {
         self.english = english
         self.dutch = dutch
         self.imageSymbol = imageSymbol
+        self.pronunciation = pronunciation
+        self.audioURL = audioURL
+        self.definition = definition
+        self.example = example
     }
 }
 
@@ -89,4 +105,20 @@ extension FlashCard {
         .init(english: "Translator", dutch: "Vertaler", imageSymbol: "bubble.left.and.bubble.right.fill"),
         .init(english: "Journalist", dutch: "Journalist", imageSymbol: "newspaper.fill")
     ]
+}
+
+// MARK: - Конвертация из API
+
+extension FlashCard {
+    static func fromDictionaryEntry(_ entry: DictionaryResponse, englishWord: String) -> FlashCard {
+        return FlashCard(
+            english: englishWord,
+            dutch: entry.word,
+            imageSymbol: nil, 
+            pronunciation: entry.pronunciation,
+            audioURL: entry.audioURL?.absoluteString,
+            definition: entry.firstDefinition,
+            example: entry.exampleSentence
+        )
+    }
 }

@@ -25,7 +25,7 @@ final class SpeechService {
         // скорость
         utterance.rate = rate
         
-        // настройка тона
+        // настройка тоена
         utterance.pitchMultiplier = 1.0
         
         //настройка громкости
