@@ -68,40 +68,40 @@ extension FlashCard {
         // Медицина
         .init(english: "Doctor", dutch: "Arts", imageSymbol: "cross.case.fill"),
         .init(english: "Nurse", dutch: "Verpleegkundige", imageSymbol: "stethoscope"),
-        .init(english: "Dentist", dutch: "Tandarts", imageSymbol: "person.crop.rectangle"),
+        .init(english: "Dentist", dutch: "Tandarts", imageSymbol: "mouth.fill"),
         .init(english: "Pharmacist", dutch: "Apotheker", imageSymbol: "pill.fill"),
         .init(english: "Veterinarian", dutch: "Dierenarts", imageSymbol: "pawprint.fill"),
-        
+
         // Образование и наука
-        .init(english: "Teacher", dutch: "Leraar", imageSymbol: "person.fill"),
+        .init(english: "Teacher", dutch: "Leraar", imageSymbol: "person.fill.questionmark"),
         .init(english: "Professor", dutch: "Professor", imageSymbol: "graduationcap.fill"),
-        .init(english: "Scientist", dutch: "Wetenschapper", imageSymbol: "brain"),
-        .init(english: "Researcher", dutch: "Onderzoeker", imageSymbol: "brain.head.profile"),
-        
+        .init(english: "Scientist", dutch: "Wetenschapper", imageSymbol: "flask.fill"),
+        .init(english: "Researcher", dutch: "Onderzoeker", imageSymbol: "magnifyingglass"),
+
         // Технологии и дизайн
         .init(english: "Developer", dutch: "Ontwikkelaar", imageSymbol: "laptopcomputer"),
-        .init(english: "Designer", dutch: "Ontwerper", imageSymbol: "pencil.and.ruler"),
+        .init(english: "Designer", dutch: "Ontwerper", imageSymbol: "paintbrush.pointed.fill"),
         .init(english: "Engineer", dutch: "Ingenieur", imageSymbol: "wrench.and.screwdriver.fill"),
-        .init(english: "Architect", dutch: "Architect", imageSymbol: "building.fill"),
-        .init(english: "Photographer", dutch: "Fotograaf", imageSymbol: "camera"),
-        
+        .init(english: "Architect", dutch: "Architect", imageSymbol: "building.columns.fill"),
+        .init(english: "Photographer", dutch: "Fotograaf", imageSymbol: "camera.fill"),
+
         // Творчество и услуги
         .init(english: "Artist", dutch: "Kunstenaar", imageSymbol: "paintbrush.fill"),
-        .init(english: "Musician", dutch: "Muzikant", imageSymbol: "guitars.fill"),
-        .init(english: "Writer", dutch: "Schrijver", imageSymbol: "pencil.and.outline"),
-        .init(english: "Chef", dutch: "Kok", imageSymbol: "carrot"),
-        .init(english: "Baker", dutch: "Bakker", imageSymbol: "stove"),
-        
+        .init(english: "Musician", dutch: "Muzikant", imageSymbol: "music.mic"),
+        .init(english: "Writer", dutch: "Schrijver", imageSymbol: "doc.text.fill"),
+        .init(english: "Chef", dutch: "Kok", imageSymbol: "fork.knife"),
+        .init(english: "Baker", dutch: "Bakker", imageSymbol: "birthday.cake.fill"),
+
         // Транспорт и право
-        .init(english: "Pilot", dutch: "Piloot", imageSymbol: "airplane.up.right"),
+        .init(english: "Pilot", dutch: "Piloot", imageSymbol: "airplane"),
         .init(english: "Driver", dutch: "Chauffeur", imageSymbol: "car.fill"),
-        .init(english: "Lawyer", dutch: "Advocaat", imageSymbol: "document.fill"),
-        .init(english: "Police Officer", dutch: "Politieagent", imageSymbol: "person.and.background.striped.horizontal"),
+        .init(english: "Lawyer", dutch: "Advocaat", imageSymbol: "books.vertical.fill"),
+        .init(english: "Police Officer", dutch: "Politieagent", imageSymbol: "shield.fill"),
         .init(english: "Firefighter", dutch: "Brandweerman", imageSymbol: "flame.fill"),
-        
+
         // Бизнес
         .init(english: "Manager", dutch: "Manager", imageSymbol: "briefcase.fill"),
-        .init(english: "Accountant", dutch: "Boekhouder", imageSymbol: "sum"),
+        .init(english: "Accountant", dutch: "Boekhouder", imageSymbol: "chart.bar.fill"),
         .init(english: "Translator", dutch: "Vertaler", imageSymbol: "bubble.left.and.bubble.right.fill"),
         .init(english: "Journalist", dutch: "Journalist", imageSymbol: "newspaper.fill")
     ]

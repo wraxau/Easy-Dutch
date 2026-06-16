@@ -10,64 +10,50 @@ final class NetworkService {
         self.session = session
     }
     
-    func fetch<T: Decodable>(
-        from urlString: String,
-        completion: @escaping (Result<T, NetworkError>) -> Void
-    ) {
+    // MARK: - Fetch async/await
+    
+    func fetch<T: Decodable>(from urlString: String) async throws -> T {
         guard let url = URL(string: urlString) else {
-            completion(.failure(.invalidURL))
-            return
+            throw NetworkError.invalidURL
         }
-        
+
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.setValue("DutchLearningApp/1.0 (iOS; educational)", forHTTPHeaderField: "User-Agent")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         request.timeoutInterval = 30
-        
-        session.dataTask(with: request) { data, response, error in
-            if let error = error as? URLError {
-                completion(.failure(self.handleURLError(error)))
-                return
-            } else if error != nil {
-                // Если какая-то другая ошибка
-                completion(.failure(.networkError(error?.localizedDescription ?? "Unknown error")))
-                return
+
+        let (data, response): (Data, URLResponse)
+        do {
+            (data, response) = try await session.data(for: request)
+        } catch let urlError as URLError {
+            throw handleURLError(urlError)
+        } catch {
+            throw NetworkError.networkError(error.localizedDescription)
+        }
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.noResponse
+        }
+
+        switch httpResponse.statusCode {
+        case 200:
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                return try decoder.decode(T.self, from: data)
+            } catch {
+                throw NetworkError.decodingError
             }
-        
-            
-            guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.noResponse))
-                return
-            }
-            
-            switch httpResponse.statusCode {
-            case 200:
-                guard let data = data else {
-                    completion(.failure(.noData))
-                    return
-                }
-                
-                do {
-                    let decoder = JSONDecoder()
-                    decoder.keyDecodingStrategy = .convertFromSnakeCase
-                    let result = try decoder.decode(T.self, from: data)
-                    completion(.success(result))
-                } catch {
-                    completion(.failure(.decodingError))
-                }
-                
-            case 404:
-                completion(.failure(.wordNotFound))
-            case 403:
-                completion(.failure(.forbidden))
-            case 429:
-                completion(.failure(.rateLimited))
-            default:
-                completion(.failure(.serverError(statusCode: httpResponse.statusCode)))
-            }
-            
-        }.resume()
+        case 404:
+            throw NetworkError.wordNotFound
+        case 403:
+            throw NetworkError.forbidden
+        case 429:
+            throw NetworkError.rateLimited
+        default:
+            throw NetworkError.serverError(statusCode: httpResponse.statusCode)
+        }
     }
     
     private func handleURLError(_ error: URLError) -> NetworkError {

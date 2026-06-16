@@ -8,12 +8,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let mainNavigationVC = MainNavigationViewController()
-        let navigationController = UINavigationController(rootViewController: mainNavigationVC) // переписала что главный контроллер теперь другой
-        
+        setupNavigationBarAppearance()
+
+        let tabBarController = MainTabBarController()
+
         window = UIWindow(windowScene: windowScene)
-        window?.rootViewController = navigationController
+        window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
+    }
+
+    // MARK: - Appearance
+
+    // MARK: - Appearance
+
+    private func setupNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        appearance.titleTextAttributes = [
+            .foregroundColor: UIColor.darkBlue,
+            .font: UIFont.boldSystemFont(ofSize: 18)
+        ]
+        appearance.shadowColor = UIColor.darkBlue.withAlphaComponent(0.1)
+
+        let edgeAppearance = UINavigationBarAppearance()
+        edgeAppearance.configureWithTransparentBackground()
+        edgeAppearance.titleTextAttributes = [
+            .foregroundColor: UIColor.darkBlue,
+            .font: UIFont.boldSystemFont(ofSize: 18)
+        ]
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = edgeAppearance
+        UINavigationBar.appearance().tintColor = .darkBlue
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

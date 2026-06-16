@@ -3,10 +3,12 @@ import AVFoundation
 
 final class SpeechService {
     
-    // MARK: - Proprties
-    
+    // MARK: - Properties
+
     static let shared = SpeechService()
     private let syntezer = AVSpeechSynthesizer()
+
+    private init() {}
     
     // MARK: - Methods
     

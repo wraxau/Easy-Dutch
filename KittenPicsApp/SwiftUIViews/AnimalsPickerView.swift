@@ -44,7 +44,7 @@ struct AnimalsPickerView: View {
         case 14:
             return "Hamster"
         case 15:
-            return "Hourse"
+            return "Horse"
         case 16:
             return "Lama"
         case 17:
@@ -60,7 +60,7 @@ struct AnimalsPickerView: View {
         case 22:
             return "Pelican"
         case 23:
-            return "Pinguin"
+            return "Penguin"
         case 24:
             return "Rabbit"
         case 25:
@@ -191,7 +191,7 @@ struct AnimalsPickerView: View {
                         .foregroundColor(.darkBlue)
                         .cornerRadius(20)
                     }
-                    .opacity(currentIndex == currentIndex - 1 ? 0.5 : 1.0)
+                    .opacity(currentIndex == 0 ? 0.5 : 1.0)
                     
                     Button {
                         showingDutch = false
