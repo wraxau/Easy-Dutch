@@ -19,9 +19,22 @@ final class UICollectionViewController: UIViewController {
         static let insetForSection: UIEdgeInsets = .init(top: 24, left: 16, bottom: 24, right: 16)
     }
     
+    // MARK: - Background
+
+    private let backgroundGradient: CAGradientLayer = {
+        let gl = CAGradientLayer()
+        gl.colors = [
+            UIColor.darkBlue.withAlphaComponent(0.08).cgColor,
+            UIColor.darkCyan.withAlphaComponent(0.14).cgColor
+        ]
+        gl.startPoint = CGPoint(x: 0, y: 0)
+        gl.endPoint = CGPoint(x: 1, y: 1)
+        return gl
+    }()
+
     // MARK:  Properties
-    
-    
+
+
     // MARK: - Subview
     
     private lazy var collectionView: UICollectionView = {
@@ -32,6 +45,9 @@ final class UICollectionViewController: UIViewController {
         collection.dataSource = self
         collection.register(FlashCardCollectionViewCell.self,
                            forCellWithReuseIdentifier: FlashCardCollectionViewCell.identifier)
+        collection.register(FlashCardSectionHeaderView.self,
+                           forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                           withReuseIdentifier: FlashCardSectionHeaderView.identifier)
         collection.showsVerticalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
         return collection
@@ -47,9 +63,15 @@ final class UICollectionViewController: UIViewController {
     
     // MARK: - Methods
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        backgroundGradient.frame = view.bounds
+    }
+
     private func configureUI() {
+        view.layer.insertSublayer(backgroundGradient, at: 0)
         view.addSubview(collectionView)
-        view.backgroundColor = .systemBackground
+        collectionView.backgroundColor = .clear
     }
     
     private func configureCollectionView() {
@@ -109,6 +131,28 @@ extension UICollectionViewController: UICollectionViewDataSource {
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader,
+              let header = collectionView.dequeueReusableSupplementaryView(
+                  ofKind: kind,
+                  withReuseIdentifier: FlashCardSectionHeaderView.identifier,
+                  for: indexPath
+              ) as? FlashCardSectionHeaderView else {
+            return UICollectionReusableView()
+        }
+
+        switch CollectionSectionType(rawValue: indexPath.section) {
+        case .hobbies:
+            header.configure(title: "Hobbies")
+        case .professions:
+            header.configure(title: "Professions")
+        case .none:
+            break
+        }
+
+        return header
+    }
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let section = CollectionSectionType(rawValue: indexPath.section) else {
             return UICollectionViewCell()
@@ -188,6 +232,10 @@ extension UICollectionViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int ) -> UIEdgeInsets {
         Constant.insetForSection
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        CGSize(width: collectionView.bounds.width, height: 52)
     }
 }
 

@@ -134,20 +134,21 @@ class CityPlacesPickerViewController: UIViewController {
                     // Левая кнопка: отступ слева + ширина
             leftButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             leftButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.35),
-            leftButton.heightAnchor.constraint(equalToConstant: 30), // высота
+            leftButton.heightAnchor.constraint(equalToConstant: 48), // высота
                     
                     // Правая кнопка: отступ справа + ширина = левой
             rightButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             rightButton.widthAnchor.constraint(equalTo: leftButton.widthAnchor),
-            rightButton.heightAnchor.constraint(equalToConstant: 30),
+            rightButton.heightAnchor.constraint(equalToConstant: 48),
             // расстояние между кнопками
             leftButton.trailingAnchor.constraint(lessThanOrEqualTo: rightButton.leadingAnchor, constant: -20),
             
             answerButton.topAnchor.constraint(equalTo: leftButton.bottomAnchor, constant: 30),
             answerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            answerButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 60),
+            answerButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             // расстояние между кнопками
-            answerButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -60)
+            answerButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            answerButton.heightAnchor.constraint(equalToConstant: 48)
             
         ])
         
@@ -158,7 +159,8 @@ class CityPlacesPickerViewController: UIViewController {
         
         titleLabel.textColor = .darkCyan
         titleLabel.font = .systemFont(ofSize: 22)
-        
+        titleLabel.backgroundColor = .clear
+
         switch x {
         case 1:
             titleLabel.text = "Bakery"
@@ -199,7 +201,7 @@ class CityPlacesPickerViewController: UIViewController {
         case 19:
             titleLabel.text = "Post office"
         case 20:
-            titleLabel.text = "Restataunt"
+            titleLabel.text = "Restaurant"
         case 21:
             titleLabel.text = "School"
         case 22:
@@ -217,9 +219,9 @@ class CityPlacesPickerViewController: UIViewController {
     
     private func updateLabelWithAnswer(x: Int) {
         
-        titleLabel.textColor = .brightOrange
+        titleLabel.textColor = .darkBlue
         titleLabel.font = .boldSystemFont(ofSize: 30)
-        titleLabel.backgroundColor = .lightOrange
+        titleLabel.backgroundColor = .clear
 
         switch x {
         case 1:
@@ -298,7 +300,9 @@ class CityPlacesPickerViewController: UIViewController {
     }
 
     private func updateImage() {
-        imageView.image = UIImage(named: images[currentIndex])
+        UIView.transition(with: imageView, duration: 0.35, options: .transitionCrossDissolve) {
+            self.imageView.image = UIImage(named: self.images[self.currentIndex])
+        }
     }
     
     private func showAnswer() {

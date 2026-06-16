@@ -15,11 +15,11 @@ extension FlashCardCellStyle {
         titleAlignment: .center,
         iconPosition: .top,
         iconSize: .proporsional(0.65),
-        soundButtonColor: .systemRed
+        soundButtonColor: .darkBlue
         )
-    
+
     static let professions = FlashCardCellStyle(
-    
+
         gradientEng:[ UIColor.white.cgColor, UIColor.ligthLemon.cgColor], gradientDutch: [UIColor.white.cgColor, UIColor.lightOrange.cgColor],
         engLanguage: "en-US",
         dutchLanguage: "nl-NL",
@@ -30,7 +30,7 @@ extension FlashCardCellStyle {
         titleAlignment: .center,
         iconPosition: .top,
         iconSize: .proporsional(0.65),
-        soundButtonColor: .systemRed
+        soundButtonColor: .darkBlue
         )
              
 }

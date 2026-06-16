@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "iconCat 1.png",
+      "filename" : "иконкаголанд.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -13,7 +13,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "iconCat.png",
+      "filename" : "иконкаголанд 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -25,6 +25,7 @@
           "value" : "tinted"
         }
       ],
+      "filename" : "иконкаголанд 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

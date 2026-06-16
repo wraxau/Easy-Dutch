@@ -9,31 +9,22 @@ final class DictionaryRepository: DictionaryRepositoryProtocol {
         self.networkService = networkService
     }
     
-    func fetchWord(_ word: String, language: String, completion: @escaping (Result<DictionaryResponse, NetworkError>) -> Void) {
-        
+    func fetchWord(_ word: String, language: String) async throws -> DictionaryResponse {
         guard !word.isEmpty, !language.isEmpty else {
-            completion(.failure(.invalidParameter))
-            return
+            throw NetworkError.invalidParameter
         }
-        
+
         guard let encodedWord = word.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) else {
-            completion(.failure(.invalidURL))
-            return
+            throw NetworkError.invalidURL
         }
-        
+
         let urlString = "\(baseURL)/\(language)/\(encodedWord)"
-        
-        networkService.fetch(from: urlString) { (result: Result<[DictionaryResponse], NetworkError>) in
-            switch result {
-            case .success(let entries):
-                if let entry = entries.first {
-                    completion(.success(entry))
-                } else {
-                    completion(.failure(.noData))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
+        let entries: [DictionaryResponse] = try await networkService.fetch(from: urlString)
+
+        guard let entry = entries.first else {
+            throw NetworkError.noData
         }
+
+        return entry
     }
 }
